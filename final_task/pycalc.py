@@ -1,7 +1,7 @@
 import argparse
 from sys import argv
 
-from pycalc_proc import PyCalcProcessing
+from final_task.pycalc_proc import PyCalcProcessing
 
 
 def create_parser():
