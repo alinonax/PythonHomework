@@ -53,6 +53,8 @@ class PyCalcProcessing(object):
         # проверка на пробел в двойных операторах
         if re.search('/ /|< =|> =|= =|! =', formula_string):
             print('ERROR: space is not allowed in operators: //, <=, >=, ==, !=.')
+        if re.search('\d\s\d', formula_string):
+            print('ERROR: space is not allowed between digits!')
         # проверка на разрешённые элементы
         for el in formula_string.strip():
             if el not in ALLOWED_TOKENS:
@@ -349,3 +351,7 @@ class PyCalcProcessing(object):
             polish_list.append(el)
         result = self.calc(polish_list)
         print(result)
+
+
+obj = PyCalcProcessing('12+3')
+obj.launch_processing()
