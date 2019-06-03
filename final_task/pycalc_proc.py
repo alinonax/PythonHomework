@@ -1,17 +1,9 @@
 # -*- coding: Windows-1251 -*-
-import sys
 import inspect
 import re
+import builtins
 
 from final_task.config import *
-
-
-# т. к. ValueError пишет в лог traceback, переопределим функцию в sys, чтобы в лог писалось только сообщение
-def excepthook(type, value, traceback):
-    print(value)
-
-
-sys.excepthook = excepthook
 
 
 class PyCalcProcessing(object):
@@ -43,22 +35,29 @@ class PyCalcProcessing(object):
         :param formula_string: input formula as text
         :return: None
         """
+        was_error = False
         # проверка, что формула не пустая строка
         if not isinstance(formula_string, str) or not formula_string:
             print('Formula should be not empty string!')
+            return True
         # проверяем, что в формуле нет более одного разделителя подряд
         # в текущей реализации удобнее сделать это здесь, чтобы упростить дальнейший парсинг на токены
         if '..' in formula_string:
             print('Number can not contain more than one delimiter "." !')
+            was_error = True
         # проверка на пробел в двойных операторах
         if re.search('/ /|< =|> =|= =|! =', formula_string):
             print('ERROR: space is not allowed in operators: //, <=, >=, ==, !=.')
-        if re.search('\d\s\d', formula_string):
+            was_error = True
+        if re.search(r'\d\s\d', formula_string):
             print('ERROR: space is not allowed between digits!')
+            was_error = True
         # проверка на разрешённые элементы
         for el in formula_string.strip():
             if el not in ALLOWED_TOKENS:
                 print('Formula contains incorrect symbol "{}"'.format(el))
+                was_error = True
+        return was_error
 
     @staticmethod
     def parse(formula_string):
@@ -288,7 +287,6 @@ class PyCalcProcessing(object):
                 arguments = []
                 func_name = getattr(math, token)
 
-                #  TODO пока костыль с log
                 if func_name != math.log:
                     number_of_args = self._get_num_args(func_name)
                     for i in range(number_of_args):
@@ -321,11 +319,8 @@ class PyCalcProcessing(object):
 
             elif token in BUILT_IN_FUNCTIONS:
                 x = stack.pop()  # забираем 1 числo из стека
-                # TODO how to get built-in attr automatically
-                if token == 'abs':
-                    stack.append(abs(x))
-                elif token == 'round':
-                    stack.append(round(x))
+                func_name = getattr(builtins, token)
+                stack.append(func_name(x))
             elif token in OPERATORS:  # если приходящий элемент - оператор,
                 y, x = stack.pop(), stack.pop()  # забираем 2 числа из стека
                 stack.append(OPERATORS[token][1](x, y))  # вычисляем оператор, возвращаем в стек
@@ -340,18 +335,19 @@ class PyCalcProcessing(object):
         return stack[0]  # результат вычисления - единственный элемент в стеке
 
     def launch_processing(self):
-        self.pre_validate(self.formula_string)
-        parsed_list = []
-        for el in self.parse(self.formula_string):
-            parsed_list.append(el)
-        self.validate_parsed_list(parsed_list)
-        parsed_list = self.process_unary_operations(parsed_list)
-        polish_list = []
-        for el in self.sort_to_polish(parsed_list):
-            polish_list.append(el)
-        result = self.calc(polish_list)
-        print(result)
+        was_error = self.pre_validate(self.formula_string)
+        if not was_error:
+            parsed_list = []
+            for el in self.parse(self.formula_string):
+                parsed_list.append(el)
+            self.validate_parsed_list(parsed_list)
+            parsed_list = self.process_unary_operations(parsed_list)
+            polish_list = []
+            for el in self.sort_to_polish(parsed_list):
+                polish_list.append(el)
+            result = self.calc(polish_list)
+            print(result)
 
 
-obj = PyCalcProcessing('12+3')
-obj.launch_processing()
+# obj = PyCalcProcessing('12+3')
+# obj.launch_processing()
