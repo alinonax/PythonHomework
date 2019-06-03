@@ -347,15 +347,15 @@ class PyCalcProcessing(object):
         return stack[0]  # результат вычисления - единственный элемент в стеке
 
     def launch_processing(self):
+        parsed_list = []
+        polish_list = []
         was_error = self.pre_validate(self.formula_string)
         if not was_error:
-            parsed_list = []
             for el in self.parse(self.formula_string):
                 parsed_list.append(el)
             was_error = self.validate_parsed_list(parsed_list)
             if not was_error:
                 parsed_list = self.process_unary_operations(parsed_list)
-                polish_list = []
                 for el in self.sort_to_polish(parsed_list):
                     polish_list.append(el)
                 result = self.calc(polish_list)
