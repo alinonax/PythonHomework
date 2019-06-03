@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3fa95c7-d832-4c2a-ac27-d33d9d11355d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final_task/pycalc_proc.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_task/pycalc_proc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final_task/unittests/unittests_prevalidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/final_task/unittests/unittests_prevalidation.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,8 +11,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/PythonHomework$Unittests_in_unittests_parse_function_py.coverage" NAME="Unittests in unittests_parse_function.py Coverage Results" MODIFIED="1559544196950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_task/unittests" />
     <SUITE FILE_PATH="coverage/PythonHomework$Unittests_in_unittests_prevalidation_py.coverage" NAME="Unittests in unittests_prevalidation.py Coverage Results" MODIFIED="1559543059132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_task/unittests" />
-    <SUITE FILE_PATH="coverage/PythonHomework$pycalc_proc.coverage" NAME="pycalc_proc Coverage Results" MODIFIED="1559542781039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_task" />
+    <SUITE FILE_PATH="coverage/PythonHomework$pycalc_proc.coverage" NAME="pycalc_proc Coverage Results" MODIFIED="1559544988293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_task" />
     <SUITE FILE_PATH="coverage/PythonHomework$Unittests_in_unittests_calc_py.coverage" NAME="Unittests in unittests_calc.py Coverage Results" MODIFIED="1559542411054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/final_task/unittests" />
   </component>
   <component name="FileEditorManager">
@@ -22,8 +21,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/final_task/pycalc_proc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+            <state relative-caret-position="7280">
+              <caret line="364" column="27" selection-start-line="364" selection-start-column="27" selection-end-line="364" selection-end-column="27" />
+              <folding>
+                <element signature="e#31#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/final_task/unittests/unittests_parse_function.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -69,7 +80,17 @@
       <find>','</find>
       <find>RETURN_CODE</find>
       <find>abs</find>
+      <find>ValueError, lambda:</find>
+      <find>ValueError, lambda:</find>
+      <find>assertRaises</find>
+      <find>message</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>True</replace>
+      <replace>True,</replace>
+      <replace>assertEqual</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -146,7 +167,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in unittests_prevalidation.py">
+  <component name="RunManager" selected="Python.pycalc_proc">
     <configuration name="pycalc_proc" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PythonHomework" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,6 +205,21 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in unittests_parse_function.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PythonHomework" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/final_task/unittests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/final_task/unittests/unittests_parse_function.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests in unittests_prevalidation.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="PythonHomework" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,21 +232,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/final_task/unittests/unittests_prevalidation.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in unittests_sort_to_polish_function.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="PythonHomework" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/final_task/unittests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/final_task/unittests/unittests_sort_to_polish_function.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -231,18 +252,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.pycalc_proc" />
-      <item itemvalue="Python tests.Unittests in unittests_sort_to_polish_function.py" />
       <item itemvalue="Python tests.Unittests in unittests_validation.py" />
       <item itemvalue="Python tests.Unittests in unittests_calc.py" />
       <item itemvalue="Python tests.Unittests in unittests_prevalidation.py" />
+      <item itemvalue="Python tests.Unittests in unittests_parse_function.py" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in unittests_prevalidation.py" />
         <item itemvalue="Python.pycalc_proc" />
+        <item itemvalue="Python tests.Unittests in unittests_parse_function.py" />
+        <item itemvalue="Python tests.Unittests in unittests_prevalidation.py" />
         <item itemvalue="Python tests.Unittests in unittests_calc.py" />
         <item itemvalue="Python tests.Unittests in unittests_validation.py" />
-        <item itemvalue="Python tests.Unittests in unittests_sort_to_polish_function.py" />
       </list>
     </recent_temporary>
   </component>
@@ -256,20 +277,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559389504861</updated>
-      <workItem from="1559542406137" duration="599000" />
+      <workItem from="1559542406137" duration="2529000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_unittests_calc_py - 2019.06.01 at 18h 51m 43s.xml">
-      <configuration name="Unittests in unittests_calc.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_unittests_sort_to_polish_function_py - 2019.06.01 at 18h 21m 48s.xml">
-      <configuration name="Unittests in unittests_sort_to_polish_function.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_unittests_sort_to_polish_function_py - 2019.06.01 at 18h 25m 38s.xml">
-      <configuration name="Unittests in unittests_sort_to_polish_function.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_unittests_sort_to_polish_function_py - 2019.06.01 at 18h 26m 23s.xml">
       <configuration name="Unittests in unittests_sort_to_polish_function.py" configurationId="tests" />
     </history-entry>
@@ -285,9 +297,24 @@
     <history-entry file="Unittests_in_unittests_prevalidation_py - 2019.06.03 at 09h 22m 07s.xml">
       <configuration name="Unittests in unittests_prevalidation.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_unittests_prevalidation_py - 2019.06.03 at 09h 24m 19s.xml">
+      <configuration name="Unittests in unittests_prevalidation.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unittests_parse_function_py - 2019.06.03 at 09h 41m 07s.xml">
+      <configuration name="Unittests in unittests_parse_function.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unittests_parse_function_py - 2019.06.03 at 09h 41m 22s.xml">
+      <configuration name="Unittests in unittests_parse_function.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unittests_parse_function_py - 2019.06.03 at 09h 42m 56s.xml">
+      <configuration name="Unittests in unittests_parse_function.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unittests_parse_function_py - 2019.06.03 at 09h 43m 17s.xml">
+      <configuration name="Unittests in unittests_parse_function.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3403000" />
+    <option name="totallyTimeSpent" value="5333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -300,7 +327,7 @@
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31333333" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19555555" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.27888888" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -320,30 +347,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/final_task/pycalc_proc.py</url>
-          <line>282</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/final_task/pycalc_proc.py</url>
-          <line>338</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/final_task/unittests/unittests_parse_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/final_task/unittests/unittest_process_unary_operations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -421,10 +425,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/final_task/unittests/unittests_parse_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/final_task/pycalc_proc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="28" column="17" lean-forward="true" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        <state relative-caret-position="7280">
+          <caret line="364" column="27" selection-start-line="364" selection-start-column="27" selection-end-line="364" selection-end-column="27" />
+          <folding>
+            <element signature="e#31#45#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

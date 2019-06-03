@@ -61,9 +61,7 @@ class PyCalcProcessing(object):
 
     @staticmethod
     def parse(formula_string):
-        number = ''  # для накопления чисел
-        op = ''  # для накопления операторов
-        function = ''  # для накопления функций
+        number = op = function = ''  # для накопления чисел, операторов, функций
         for el in formula_string.strip():
             if el in LETTERS:  # обработка функции
                 function += el.lower()
@@ -125,6 +123,7 @@ class PyCalcProcessing(object):
                     yield op
                     op = ''
                 yield el  # выстрелили скобку или запятую, как только встретили
+
         if function:  # выстрелили функцию, если было накоплено
             yield function
         if number:  # выстрелили число, если было накоплено
@@ -133,15 +132,18 @@ class PyCalcProcessing(object):
             yield op
 
     def validate_parsed_list(self, parsed_list):
-        if parsed_list[-1] in OPERATORS:
-            print('Operator at the end of the formula: "{}" '.format(parsed_list[-1]))
-        if parsed_list[0] in BINARY_OPERATORS:
-            print('Formula can not start with binary operator "{}"'.format(parsed_list[0]))
-
+        was_error = False
         counter = 0  # counter for parentheses
         was_number = False
-
         previous_el = ''
+
+        if parsed_list[-1] in OPERATORS:
+            print('Operator at the end of the formula: "{}" '.format(parsed_list[-1]))
+            was_error = True
+        if parsed_list[0] in BINARY_OPERATORS:
+            print('Formula can not start with binary operator "{}"'.format(parsed_list[0]))
+            was_error = True
+
         for el in parsed_list:
             counter = self._matched_parentheses(el, counter)
 
@@ -152,22 +154,27 @@ class PyCalcProcessing(object):
 
             if el == '.':
                 print('Single delimiter is prohibited in formula!')
+                was_error = True
 
             if isinstance(el, str) and el[0] in LETTERS:
                 if el.lower() not in ALL_FUNCTIONS_AND_CONSTS:
                     print('Function or constant {} is not supported by calculator'.format(el))
+                    was_error = True
 
             if previous_el == '(':
                 if el in ((')', ',',) + tuple(BINARY_OPERATORS.keys())):
                     print(message)
+                    was_error = True
 
             if previous_el == ')':
                 if el in (('(',) + ALL_FUNCTIONS_AND_CONSTS) or isinstance(el, float):
                     print(message)
+                    was_error = True
 
             if previous_el == ',':
                 if el in (')', ',', '.'):
                     print(message)
+                    was_error = True
 
             if previous_el in UNARY_OPERATORS:
                 if el in ((')', ',',) + tuple(BINARY_OPERATORS.keys())):
@@ -176,24 +183,29 @@ class PyCalcProcessing(object):
             if previous_el in BINARY_OPERATORS:
                 if el in ((')', ',',) + tuple(BINARY_OPERATORS.keys())):
                     print(message)
+                    was_error = True
 
             if previous_el in ALL_FUNCTIONS:
                 if el != '(':
                     print(message)
+                    was_error = True
 
             if isinstance(previous_el, float) or previous_el in MATH_CONSTS:
                 if el in (('(',) + ALL_FUNCTIONS_AND_CONSTS) or isinstance(el, float):
                     print(message)
+                    was_error = True
 
             previous_el = el
 
         if counter != 0:
             print('Wrong number of opened or closed parentheses in formula!')
+            was_error = True
 
         if was_number is False:
             print('Formula does not contain numbers!')
+            was_error = True
 
-        return 'Formula was validated! Errors were not found.'
+        return was_error
 
     @staticmethod
     def process_unary_operations(validated_list):
@@ -340,14 +352,15 @@ class PyCalcProcessing(object):
             parsed_list = []
             for el in self.parse(self.formula_string):
                 parsed_list.append(el)
-            self.validate_parsed_list(parsed_list)
-            parsed_list = self.process_unary_operations(parsed_list)
-            polish_list = []
-            for el in self.sort_to_polish(parsed_list):
-                polish_list.append(el)
-            result = self.calc(polish_list)
-            print(result)
+            was_error = self.validate_parsed_list(parsed_list)
+            if not was_error:
+                parsed_list = self.process_unary_operations(parsed_list)
+                polish_list = []
+                for el in self.sort_to_polish(parsed_list):
+                    polish_list.append(el)
+                result = self.calc(polish_list)
+                print(result)
 
 
-# obj = PyCalcProcessing('12+3')
-# obj.launch_processing()
+obj = PyCalcProcessing('1+2')
+obj.launch_processing()
