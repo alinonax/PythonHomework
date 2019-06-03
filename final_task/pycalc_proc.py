@@ -60,76 +60,64 @@ class PyCalcProcessing(object):
         return was_error
 
     @staticmethod
-    def parse(formula_string):
+    def _push_out_number(number):
+        if number:  # выстрелили число, если было накоплено
+            yield float(number) if number != '.' else '.'
+            number = ''
+        return number
+
+    @staticmethod
+    def _push_out_op(op):
+        if op:  # выстрелили оператор, если был накоплен
+            yield op
+            op = ''
+        return op
+
+    @staticmethod
+    def _push_out_func(function):
+        if function:  # выстрелили функцию, если было накоплено
+            yield function
+            function = ''
+        return function
+
+    def parse(self, formula_string):
         number = op = function = ''  # для накопления чисел, операторов, функций
         for el in formula_string.strip():
             if el in LETTERS:  # обработка функции
                 function += el.lower()
-                if op:  # выстрелили оператор, если был накоплен
-                    yield op
-                    op = ''
-                if number:  # выстрелили число, если было накоплено
-                    yield float(number) if number != '.' else '.'
-                    number = ''
+                op = self._push_out_op(op)
+                number = self._push_out_number(number)
             elif el in string.digits + '.':  # обработка чисел целых и с точкой
                 if function:
                     function += el  # продолжаем накапливать функцию, пока не встретим что-то отличное от цифры
                 else:
                     number += el
-                    if op:  # выстрелили оператор, если был накоплен
-                        yield op
-                        op = ''
-                    if function:  # выстрелили функцию, если было накоплено
-                        yield function
-                        function = ''
+                    op = self._push_out_op(op)
+                    function = self._push_out_func(function)
             elif el in OPERATORS_BEGIN:  # обработка операторов
                 if el in DOUBLE_OPER_PART1 and not op:  # если возможен двойной оператор, добавили и ждём
                     op += el
                 elif el in DOUBLE_OPER_PART2 and op:  # найден двойной
                     op += el
-                    if number:  # выстрелили число, если было накоплено
-                        yield float(number) if number != '.' else '.'
-                        number = ''
-                    if function:  # выстрелили функцию, если было накоплено
-                        yield function
-                        function = ''
-                    yield op  # выстрелили оператор двойной, когда он был накоплен
-                    op = ''
+                    number = self._push_out_number(number)
+                    function = self._push_out_func(function)
+                    op = self._push_out_op(op)
                 else:  # если оператор одинарный
-                    if op:  # если был накоплен на предыдущем шаге - выстрелили, обнулили
-                        yield op
-                        op = ''
-                    if number:  # выстрелили число, если было накоплено
-                        yield float(number) if number != '.' else '.'
-                        number = ''
-                    if function:  # выстрелили функцию, если было накоплено
-                        yield function
-                        function = ''
+                    op = self._push_out_op(op)
+                    number = self._push_out_number(number)
+                    function = self._push_out_func(function)
                     yield el  # довыстрелили одинарный оператор
-                if number:  # выстрелили число, если было накоплено
-                    yield float(number) if number != '.' else '.'
-                    number = ''
-                if function:  # выстрелили функцию, если было накоплено
-                    yield function
-                    function = ''
+                number = self._push_out_number(number)
+                function = self._push_out_func(function)
             elif el in PARENTHESES + (',',):  # обработка скобок и запятых (если функция с несколькими аргументами)
-                if number:  # выстрелили число, если было накоплено
-                    yield float(number) if number != '.' else '.'
-                    number = ''
-                if function:  # выстрелили функцию, если было накоплено
-                    yield function
-                    function = ''
-                if op:  # выстрелили оператор, если был накоплен
-                    yield op
-                    op = ''
+                number = self._push_out_number(number)
+                function = self._push_out_func(function)
+                op = self._push_out_op(op)
                 yield el  # выстрелили скобку или запятую, как только встретили
 
-        if function:  # выстрелили функцию, если было накоплено
-            yield function
-        if number:  # выстрелили число, если было накоплено
-            yield float(number) if number != '.' else '.'
-        if op:  # выстрелили оператор, если было накоплено
-            yield op
+        function = self._push_out_func(function)
+        number = self._push_out_number(number)
+        op = self._push_out_op(op)
 
     def validate_parsed_list(self, parsed_list):
         was_error = False
